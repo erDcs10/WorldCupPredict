@@ -13,7 +13,7 @@ Mahasiswa mengisi, memodifikasi, dan mengembangkan kode ini sesuai topik kelompo
 |------|-----|-------------|
 | Erlangga Deanda Chandra Setya | 244311013 | Data Analyst         |
 | Afif  | ... | ...         |
-| Alvina| ... | ...         |
+| Alvina Nur laila Anggraini| 244311003 | Project Manager        |
 | Rosyid| ... | ...         |
 
 **Topik Domain:** *(isi: Akademik / Kesehatan / Hukum / Bisnis / Pertanian / Teknologi)*  
