@@ -7,7 +7,13 @@ from langchain_classic.chains.combine_documents import create_stuff_documents_ch
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_community.chat_message_histories import ChatMessageHistory
-from langchain_classic.retrievers.multi_query import MultiQueryRetriever # Tambahkan import ini
+from langchain_classic.retrievers.multi_query import MultiQueryRetriever
+
+# --- IMPORT BARU UNTUK ENSEMBLE ---
+from langchain_classic.retrievers import EnsembleRetriever
+from langchain_community.retrievers import BM25Retriever
+from langchain_core.documents import Document
+
 langchain.debug = True
 
 class RAGQueryEngine:
@@ -20,17 +26,31 @@ class RAGQueryEngine:
         self.embeddings = OllamaEmbeddings(model="nomic-embed-text")
         
         # 2. RETRIEVAL SETUP
+        # A. Vector Database & Vector Retriever
         self.vectorstore = Chroma(
             persist_directory=persist_dir, 
             embedding_function=self.embeddings
         )
+        base_vector_retriever = self.vectorstore.as_retriever(search_kwargs={"k": 3})
         
-        # --- MODIFIKASI DISINI: Bungkus retriever dasar dengan MultiQueryRetriever ---
-        base_retriever = self.vectorstore.as_retriever(search_kwargs={"k": 3})
-        
-        self.retriever = MultiQueryRetriever.from_llm(
-            retriever=base_retriever, 
+        # B. MultiQuery Retriever (Dense/Semantic Search)
+        multi_query_retriever = MultiQueryRetriever.from_llm(
+            retriever=base_vector_retriever, 
             llm=self.llm
+        )
+        
+        # C. BM25 Retriever (Sparse/Keyword Search)
+        # Ekstrak dokumen dari ChromaDB untuk melatih BM25
+        db_data = self.vectorstore.get()
+        documents = [Document(page_content=text) for text in db_data['documents']]
+        
+        bm25_retriever = BM25Retriever.from_documents(documents)
+        bm25_retriever.k = 3 # Ambil 3 dokumen terbaik berdasarkan keyword
+        
+        # D. ENSEMBLE RETRIEVER (Gabungan MultiQuery dan BM25)
+        self.retriever = EnsembleRetriever(
+            retrievers=[bm25_retriever, multi_query_retriever],
+            weights=[0.1, 0.9] # 10% bobot untuk keyword, 90% untuk semantic
         )
         # ----------------------------------------------------------------------------
 
@@ -49,7 +69,7 @@ class RAGQueryEngine:
             ("human", "{input}"),
         ])
 
-        # history_aware_retriever sekarang menggunakan MultiQueryRetriever di dalamnya
+        # history_aware_retriever sekarang menggunakan EnsembleRetriever di dalamnya
         history_aware_retriever = create_history_aware_retriever(
             self.llm, self.retriever, contextualize_q_prompt
         )
@@ -79,7 +99,6 @@ class RAGQueryEngine:
         if session_id not in self.store:
             self.store[session_id] = ChatMessageHistory()
         
-        # Keep only the last 10 messages to prevent "poisoning"
         if len(self.store[session_id].messages) > 10:
             self.store[session_id].messages = self.store[session_id].messages[-10:]
             
@@ -89,8 +108,20 @@ class RAGQueryEngine:
     # STEP 4: SUBMIT TO LLM (Invocation)
     # ==========================================
     def ask(self, user_input: str, session_id: str = "default_session"):
-    # Gunakan .stream untuk mendapatkan generator
         return self.conversational_rag_chain.stream(
             {"input": user_input},
             config={"configurable": {"session_id": session_id}}
         )
+    
+    # ==========================================
+    # STEP 5: KONFIGURASI DINAMIS (Dynamic Retriever Weighting)
+    # ==========================================
+    def update_retriever_weights(self, keyword_weight: float):
+        """
+        Mengubah bobot EnsembleRetriever secara dinamis.
+        Total bobot harus selalu 1.0 (100%).
+        """
+        semantic_weight = 1.0 - keyword_weight
+        
+        # Ingat urutannya saat kita inisialisasi: [BM25, MultiQuery]
+        self.retriever.weights = [keyword_weight, semantic_weight]

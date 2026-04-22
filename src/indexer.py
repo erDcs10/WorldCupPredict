@@ -16,17 +16,17 @@ from langchain_chroma import Chroma
 print("Initializing embedding model...")
 embeddings = OllamaEmbeddings(model="nomic-embed-text")
 
-# Define where your data lives
+# Define dimana data mentah kita berada dan dimana kita akan menyimpan database yang belum di-index
 DATA_FOLDER = "./data"
 PERSIST_DIR = "./chroma_db"
 
-# Create the data folder if it doesn't exist yet
+# Buat folder data jika belum ada, dan ingatkan user untuk memasukkan file sebelum lanjut
 if not os.path.exists(DATA_FOLDER):
     os.makedirs(DATA_FOLDER)
     print(f"Created '{DATA_FOLDER}' folder. Please put your files in there and run again.")
     exit()
 
-# Add any websites you want to scrape here
+# Tambahkan daftar website yang ingin kita scrape (jika ada)
 WEBSITES_TO_SCRAPE = [
     "https://www.fifa.com/en/world-rankings",
 ]
@@ -37,18 +37,18 @@ WEBSITES_TO_SCRAPE = [
 all_docs = []
 print(f"\nScanning '{DATA_FOLDER}' for documents...")
 
-# Loop through every file in the data folder
+# Loop semua file di folder data dan gunakan loader yang sesuai berdasarkan ekstensi file
 for filename in os.listdir(DATA_FOLDER):
     file_path = os.path.join(DATA_FOLDER, filename)
     
-    # Skip directories, only process files
+    # Skip jika bukan file (misal folder atau shortcut)
     if not os.path.isfile(file_path):
         continue
 
     print(f"Loading: {filename}...")
     
     try:
-        # Check the extension and use the correct loader
+        # Cek ekstensi file dan gunakan loader yang sesuai
         if filename.endswith(".pdf"):
             loader = PyPDFLoader(file_path)
             all_docs.extend(loader.load())
@@ -71,7 +71,7 @@ for filename in os.listdir(DATA_FOLDER):
     except Exception as e:
         print(f"  -> ❌ Error loading {filename}: {e}")
 
-# Load Websites
+# Load websites jika ada
 if WEBSITES_TO_SCRAPE:
     print("\nScraping websites...")
     for url in WEBSITES_TO_SCRAPE:
@@ -82,7 +82,7 @@ if WEBSITES_TO_SCRAPE:
         except Exception as e:
              print(f"  -> ❌ Error loading {url}: {e}")
 
-# Check if we actually loaded anything
+# Cek apakah ada dokumen yang berhasil dimuat
 if not all_docs:
     print("\n❌ No valid documents were found to process! Exiting.")
     exit()
@@ -96,7 +96,7 @@ print("Splitting text into chunks...")
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
 splits = text_splitter.split_documents(all_docs)
 
-# Add chunk IDs for precise citations
+# Tambahkan metadata chunk_id untuk setiap split agar kita bisa melacaknya nanti
 for i, split in enumerate(splits):
     split.metadata['chunk_id'] = i
 

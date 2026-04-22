@@ -3,12 +3,11 @@ import os
 
 from src.query import RAGQueryEngine
 
-
 # Page Setup
-st.set_page_config(page_title="Seputar Piala Dunia 2026", page_icon="🦙", layout="centered")
-st.title("Seputar Piala Dunia 2026")
+st.set_page_config(page_title="World Cup Predict", page_icon="docs\WCP_Kecil-01.svg", layout="centered")
+st.title("World Cup Analyst v1.0.0")
 
-# Initialize the Backend Engine ONCE using Streamlit Cache
+# Inisialisasi Backend Engine menggunakan Streamlit Cache
 @st.cache_resource
 def load_engine():
     try:
@@ -20,11 +19,49 @@ def load_engine():
 # Load the engine
 engine = load_engine()
 
-# Manage UI message state
+# ==========================================
+# UI: SIDEBAR PENGATURAN
+# ==========================================
+with st.sidebar:
+    st.image("docs/WCP_Logo-01.svg", use_container_width=True)
+    st.divider()
+    st.header("⚙️ Pengaturan Pencarian")
+    st.markdown("Atur seberapa pintar AI mencari data di database.")
+    
+    # Slider untuk mengatur bobot Keyword (BM25)
+    # Format: st.slider(label, min_value, max_value, default_value, step)
+    keyword_val = st.slider(
+        "Porsi Keyword Persis (BM25)", 
+        min_value=0.0, 
+        max_value=1.0, 
+        value=0.1, 
+        step=0.1
+    )
+    
+    # Kalkulasi otomatis untuk Semantic
+    semantic_val = 1.0 - keyword_val
+    
+    # Tampilkan persentase agar user/tim mudah membacanya
+    st.info(f"🔍 **Komposisi Saat Ini:**\n- Keyword: {int(keyword_val*100)}%\n- Makna Kalimat: {int(semantic_val*100)}%")
+
+# Update bobot di dalam engine setiap kali slider digeser
+engine.update_retriever_weights(keyword_val)
+
+# Management UI messages Session State
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# Redraw previous chat bubbles
+    # --- BAGIAN PERKENALAN OTOMATIS ---
+    intro_text = (
+        "Halo! Saya adalah **World Cup Analyst AI**. 🏆\n\n"
+        "Saya siap membantu memberikan analisis mendalam "
+        "terkait dunia sepak bola. "
+        "Ada yang ingin kamu tanyakan?"
+    )
+    # Simpan pesan perkenalan ke dalam chat history UI
+    st.session_state.messages.append({"role": "assistant", "content": intro_text})
+
+# Menampilkan chat history
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
