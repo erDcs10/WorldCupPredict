@@ -1,4 +1,4 @@
-# 🤖 RAG Starter Pack — UTS Data Engineering
+# 🤖 RAG World Cup Predict — UTS Data Engineering
 
 > **Retrieval-Augmented Generation** — Sistem Tanya-Jawab Cerdas Berbasis Dokumen
 
