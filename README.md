@@ -88,7 +88,7 @@ python src/indexer.py
 streamlit run app.py
 
 ---
-
+```
 ## 🔧 Konfigurasi
 
 Semua konfigurasi utama ada di `src/indexer.py` dan `src/query.py`:
@@ -123,7 +123,6 @@ Semua konfigurasi utama ada di `src/indexer.py` dan `src/query.py`:
 **Analisis:** ...
 
 ---
-```
 ## 🏗️ Arsitektur Sistem
 
 ![Diagram Arsitektur](https://github.com/AlvinaNLA03/WorldCupPredict/blob/main/docs/Diagram%20Arsitektur%20RAG.png)
