@@ -2,9 +2,6 @@
 
 > **Retrieval-Augmented Generation** — Sistem Tanya-Jawab Cerdas Berbasis Dokumen
 
-Starter pack ini adalah **kerangka awal** proyek RAG untuk UTS Data Engineering D3/D4.
-Mahasiswa mengisi, memodifikasi, dan mengembangkan kode ini sesuai topik kelompok masing-masing.
-
 ---
 
 ## 👥 Identitas Kelompok
