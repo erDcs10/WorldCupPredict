@@ -16,10 +16,10 @@ Mahasiswa mengisi, memodifikasi, dan mengembangkan kode ini sesuai topik kelompo
 | Alvina Nur Laila Anggraini| 244311003 | Project Manager        |
 | Muhammad Rosyid Ridlo Abdillah| 244311020 | Data Analyst         |
 
-**Topik Domain:** *(isi: Akademik / Kesehatan / Hukum / Bisnis / Pertanian / Teknologi)*  
-**Stack yang Dipilih:** *(isi: LangChain / LlamaIndex / From Scratch)*  
-**LLM yang Digunakan:** *(isi: Groq / Gemini / Ollama / lainnya)*  
-**Vector DB yang Digunakan:** *(isi: ChromaDB / FAISS / lainnya)*
+**Topik Domain:** *Olahraga*  
+**Stack yang Dipilih:** *Langchain*  
+**LLM yang Digunakan:** *LLama3.2*  
+**Vector DB yang Digunakan:** *ChromaDB*
 
 ---
 
@@ -27,25 +27,27 @@ Mahasiswa mengisi, memodifikasi, dan mengembangkan kode ini sesuai topik kelompo
 
 ```
 rag-uts-[nama-kelompok]/
-├── data/                    # Dokumen sumber Anda (PDF, TXT, dll.)
-│   └── sample.txt           # Contoh dokumen (ganti dengan dokumen Anda)
+├── data/                    
+│   └── Laporan_DataMaster_Naraso.pdf
+│   └── Piala_Dunia_FIFA_2026.pdf
+│   └── Laporan_SemuaPildun_Narasi.pdf
+│   └── grup_jadwal_stadion_Wc2026.pdf
+│   └── DataMaster.csv
+│   └── Data_Pemain_Desktriptif.txt  
 ├── src/
-│   ├── indexing.py          # 🔧 WAJIB DIISI: Pipeline indexing
-│   ├── query.py             # 🔧 WAJIB DIISI: Pipeline query & retrieval
-│   ├── embeddings.py        # 🔧 WAJIB DIISI: Konfigurasi embedding
-│   └── utils.py             # Helper functions
-├── ui/
-│   └── app.py               # 🔧 WAJIB DIISI: Antarmuka Streamlit
+│   ├── indexer.py          
+│   ├── query.py                           
 ├── docs/
-│   └── arsitektur.png       # 📌 Diagram arsitektur (buat sendiri)
+│   └── arsitektur.png       
 ├── evaluation/
-│   └── hasil_evaluasi.xlsx  # 📌 Tabel evaluasi 10 pertanyaan
-├── notebooks/
-│   └── 01_demo_rag.ipynb    # Notebook demo dari hands-on session
-├── .env.example             # Template environment variables
+│   └── hasil_evaluasi.xlsx   
+├── app.py   
+├── .env.example             
 ├── .gitignore
 ├── requirements.txt
 └── README.md
+```
+
 ```
 
 ---
@@ -56,29 +58,19 @@ rag-uts-[nama-kelompok]/
 
 ```bash
 # Clone repository ini
-git clone https://github.com/[username]/rag-uts-[kelompok].git
-cd rag-uts-[kelompok]
+git clone https://github.com/AlvinaNLA03/WorldCupPredict.git
+cd WorldCupPredict
 
 # Buat virtual environment
 python -m venv venv
-source venv/bin/activate        # Linux/Mac
-# atau: venv\Scripts\activate   # Windows
+venv\Scripts\activate   # Windows
 
 # Install dependencies
 pip install -r requirements.txt
 ```
 
-### 2. Konfigurasi API Key
 
-```bash
-# Salin template env
-cp .env.example .env
-
-# Edit .env dan isi API key Anda
-# JANGAN commit file .env ke GitHub!
-```
-
-### 3. Siapkan Dokumen
+### 2. Siapkan Dokumen
 
 Letakkan dokumen sumber Anda di folder `data/`:
 ```bash
@@ -86,34 +78,30 @@ Letakkan dokumen sumber Anda di folder `data/`:
 cp dokumen-saya.pdf data/
 ```
 
-### 4. Jalankan Indexing (sekali saja)
+### 3. Jalankan Indexing (sekali saja)
 
 ```bash
-python src/indexing.py
+python src/indexer.py
 ```
 
-### 5. Jalankan Sistem RAG
+### 4. Jalankan Sistem RAG
 
 ```bash
 # Dengan Streamlit UI
-streamlit run ui/app.py
-
-# Atau via CLI
-python src/query.py
-```
+streamlit run app.py
 
 ---
 
 ## 🔧 Konfigurasi
 
-Semua konfigurasi utama ada di `src/config.py` (atau langsung di setiap file):
+Semua konfigurasi utama ada di `src/indexer.py` dan `src/query.py`:
 
 | Parameter | Default | Keterangan |
 |-----------|---------|------------|
 | `CHUNK_SIZE` | 500 | Ukuran setiap chunk teks (karakter) |
 | `CHUNK_OVERLAP` | 50 | Overlap antar chunk |
 | `TOP_K` | 3 | Jumlah dokumen relevan yang diambil |
-| `MODEL_NAME` | *(isi)* | Nama model LLM yang digunakan |
+| `MODEL_NAME` | *Llama3.2* | Nama model LLM yang digunakan |
 
 ---
 
@@ -153,10 +141,10 @@ Semua konfigurasi utama ada di `src/config.py` (atau langsung di setiap file):
 
 ## 📚 Referensi & Sumber
 
-- Framework: *(LangChain docs / LlamaIndex docs)*
-- LLM: *(Groq / Gemini / Ollama)*
-- Vector DB: *(ChromaDB / FAISS docs)*
-- Tutorial yang digunakan: *(cantumkan URL)*
+- Framework: *LangChain*
+- LLM: *Llama3.2*
+- Vector DB: *ChromaDB*
+- Tutorial yang digunakan: *https://youtu.be/UtSSMs6ObqY?si=_KD1hsRoAS7f-av-*
 
 ---
 
