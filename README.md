@@ -11,10 +11,10 @@ Mahasiswa mengisi, memodifikasi, dan mengembangkan kode ini sesuai topik kelompo
 
 | Nama | NIM | Tugas Utama |
 |------|-----|-------------|
-| Erlangga Deanda Chandra Setya | 244311013 | Data Analyst         |
-| Rayyan Afif  | 244311025 | Data Engineer         |
+| Erlangga Deanda Chandra Setya | 244311013 | Data Engineer        |
+| Rayyan Afif  | 244311025 | Data Analyst        |
 | Alvina Nur Laila Anggraini| 244311003 | Project Manager        |
-| Muhammad Rosyid Ridlo Abdillah| 244311020 | Data Engineer         |
+| Muhammad Rosyid Ridlo Abdillah| 244311020 | Data Analyst         |
 
 **Topik Domain:** *(isi: Akademik / Kesehatan / Hukum / Bisnis / Pertanian / Teknologi)*  
 **Stack yang Dipilih:** *(isi: LangChain / LlamaIndex / From Scratch)*  
