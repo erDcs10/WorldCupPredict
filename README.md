@@ -133,7 +133,7 @@ Semua konfigurasi utama ada di `src/config.py` (atau langsung di setiap file):
 
 ## 🏗️ Arsitektur Sistem
 
-![Diagram Arsitektur](https://github.com/AlvinaNLA03/WorldCupPredict/blob/main/Diagram%20Arsitektur%20RAG.png)
+![Diagram Arsitektur](https://github.com/AlvinaNLA03/WorldCupPredict/blob/main/docs/Diagram%20Arsitektur%20RAG.png)
 
 ```
 [Dokumen] → [Loader] → [Splitter] → [Embedding] → [Vector DB]
