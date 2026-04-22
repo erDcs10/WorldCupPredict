@@ -11,10 +11,10 @@ Mahasiswa mengisi, memodifikasi, dan mengembangkan kode ini sesuai topik kelompo
 
 | Nama | NIM | Tugas Utama |
 |------|-----|-------------|
-| Erlangga Deanda Chandra Setya | 244311013 | Data Analyst         |
-| Rayyan Afif  | 244311025 | Data Engineer         |
+| Erlangga Deanda Chandra Setya | 244311013 | Data Engineer        |
+| Rayyan Afif  | 244311025 | Data Analyst        |
 | Alvina Nur Laila Anggraini| 244311003 | Project Manager        |
-| Muhammad Rosyid Ridlo Abdillah| 244311020 | Data Engineer         |
+| Muhammad Rosyid Ridlo Abdillah| 244311020 | Data Analyst         |
 
 **Topik Domain:** *(isi: Akademik / Kesehatan / Hukum / Bisnis / Pertanian / Teknologi)*  
 **Stack yang Dipilih:** *(isi: LangChain / LlamaIndex / From Scratch)*  
@@ -125,6 +125,14 @@ Semua konfigurasi utama ada di `src/config.py` (atau langsung di setiap file):
 |---|-----------|----------------|---------------|-----------|
 | 1 | ... | ... | ... | ... |
 | 2 | ... | ... | ... | ... |
+| 3 | ... | ... | ... | ... |
+| 4 | ... | ... | ... | ... |
+| 5 | ... | ... | ... | ... |
+| 6 | Apa alasan dari tim nasional Eritrea memilih untuk mengundurkan diri dari babak kualifikasi piala dunia 2026?| ... | Eritrea mundur dari babak kualifikasi karena kekhawatiran bahwa para pemain mereka akan mencari suaka politik jika diizinkan bepergian ke luar negeri| ... |
+| 7 | Siapakah pemain top argentina?| ... | Lionel Messi dengan rating : 8.314285 | ... |
+| 8 | Siapakah pemain dengan rating tertinggi pada pertandingan piala dunia 2026? | ... | Diogo Dalot dengan rating : 9.3| ... |
+| 9 | Berapakah nilai pasar dari tim nasional Jerman?| ... | Nilai pasar dari tim nasional Jerman diperkirakan mencapai Rp 13.444,70 Miliar| ... |
+| 10 | Tim nasional manakah yang mengalami kebobolan sebanyak 14 gol dalam 5 pertandingan terakhir? | ... | Tim nasional yang mengalami kebobolan 14 gol adalah tim nasional Curacao | ... |
 
 **Rata-rata Skor:** ...  
 **Analisis:** ...
@@ -133,7 +141,7 @@ Semua konfigurasi utama ada di `src/config.py` (atau langsung di setiap file):
 
 ## 🏗️ Arsitektur Sistem
 
-![Diagram Arsitektur](https://github.com/AlvinaNLA03/WorldCupPredict/blob/main/Diagram%20Arsitektur%20RAG.png)
+![Diagram Arsitektur](https://github.com/AlvinaNLA03/WorldCupPredict/blob/main/diagram%20arsitektur%20RAG.png)
 
 ```
 [Dokumen] → [Loader] → [Splitter] → [Embedding] → [Vector DB]
