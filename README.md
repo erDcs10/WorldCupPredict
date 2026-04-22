@@ -126,7 +126,7 @@ Semua konfigurasi utama ada di `src/indexer.py` dan `src/query.py`:
 
 ## 🏗️ Arsitektur Sistem
 
-![Diagram Arsitektur](https://github.com/AlvinaNLA03/WorldCupPredict/blob/main/diagram%20arsitektur%20RAG.png)
+![Diagram Arsitektur](https://github.com/AlvinaNLA03/WorldCupPredict/blob/main/docs/Diagram%20Arsitektur%20RAG.png)
 
 ```
 [Dokumen] → [Loader] → [Splitter] → [Embedding] → [Vector DB]
