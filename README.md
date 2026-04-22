@@ -125,6 +125,14 @@ Semua konfigurasi utama ada di `src/config.py` (atau langsung di setiap file):
 |---|-----------|----------------|---------------|-----------|
 | 1 | ... | ... | ... | ... |
 | 2 | ... | ... | ... | ... |
+| 3 | ... | ... | ... | ... |
+| 4 | ... | ... | ... | ... |
+| 5 | ... | ... | ... | ... |
+| 6 | Apa alasan dari tim nasional Eritrea memilih untuk mengundurkan diri dari babak kualifikasi piala dunia 2026?| ... | Eritrea mundur dari babak kualifikasi karena kekhawatiran bahwa para pemain mereka akan mencari suaka politik jika diizinkan bepergian ke luar negeri| ... |
+| 7 | Siapakah pemain top argentina?| ... | Lionel Messi dengan rating : 8.314285 | ... |
+| 8 | Siapakah pemain dengan rating tertinggi pada pertandingan piala dunia 2026? | ... | Diogo Dalot dengan rating : 9.3| ... |
+| 9 | Berapakah nilai pasar dari tim nasional Jerman?| ... | Nilai pasar dari tim nasional Jerman diperkirakan mencapai Rp 13.444,70 Miliar| ... |
+| 10 | Tim nasional manakah yang mengalami kebobolan sebanyak 14 gol dalam 5 pertandingan terakhir? | ... | Tim nasional yang mengalami kebobolan 14 gol adalah tim nasional Curacao | ... |
 
 **Rata-rata Skor:** ...  
 **Analisis:** ...
