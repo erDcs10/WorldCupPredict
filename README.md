@@ -1,9 +1,6 @@
-# 🤖 RAG Starter Pack — UTS Data Engineering
+# 🤖 RAG World Cup Predict — UTS Data Engineering
 
 > **Retrieval-Augmented Generation** — Sistem Tanya-Jawab Cerdas Berbasis Dokumen
-
-Starter pack ini adalah **kerangka awal** proyek RAG untuk UTS Data Engineering D3/D4.
-Mahasiswa mengisi, memodifikasi, dan mengembangkan kode ini sesuai topik kelompok masing-masing.
 
 ---
 
@@ -11,15 +8,15 @@ Mahasiswa mengisi, memodifikasi, dan mengembangkan kode ini sesuai topik kelompo
 
 | Nama | NIM | Tugas Utama |
 |------|-----|-------------|
-| Erlangga Deanda Chandra Setya | 244311013 | Data Analyst         |
-| Rayyan Afif  | 244311025 | Data Engineer         |
+| Erlangga Deanda Chandra Setya | 244311013 | Data Engineer        |
+| Rayyan Afif  | 244311025 | Data Analyst        |
 | Alvina Nur Laila Anggraini| 244311003 | Project Manager        |
-| Muhammad Rosyid Ridlo Abdillah| 244311020 | Data Engineer         |
+| Muhammad Rosyid Ridlo Abdillah| 244311020 | Data Analyst         |
 
-**Topik Domain:** *(isi: Akademik / Kesehatan / Hukum / Bisnis / Pertanian / Teknologi)*  
-**Stack yang Dipilih:** *(isi: LangChain / LlamaIndex / From Scratch)*  
-**LLM yang Digunakan:** *(isi: Groq / Gemini / Ollama / lainnya)*  
-**Vector DB yang Digunakan:** *(isi: ChromaDB / FAISS / lainnya)*
+**Topik Domain:** *Olahraga*  
+**Stack yang Dipilih:** *Langchain*  
+**LLM yang Digunakan:** *LLama3.2*  
+**Vector DB yang Digunakan:** *ChromaDB*
 
 ---
 
@@ -27,25 +24,27 @@ Mahasiswa mengisi, memodifikasi, dan mengembangkan kode ini sesuai topik kelompo
 
 ```
 rag-uts-[nama-kelompok]/
-├── data/                    # Dokumen sumber Anda (PDF, TXT, dll.)
-│   └── sample.txt           # Contoh dokumen (ganti dengan dokumen Anda)
+├── data/                    
+│   └── Laporan_DataMaster_Naraso.pdf
+│   └── Piala_Dunia_FIFA_2026.pdf
+│   └── Laporan_SemuaPildun_Narasi.pdf
+│   └── grup_jadwal_stadion_Wc2026.pdf
+│   └── DataMaster.csv
+│   └── Data_Pemain_Desktriptif.txt  
 ├── src/
-│   ├── indexing.py          # 🔧 WAJIB DIISI: Pipeline indexing
-│   ├── query.py             # 🔧 WAJIB DIISI: Pipeline query & retrieval
-│   ├── embeddings.py        # 🔧 WAJIB DIISI: Konfigurasi embedding
-│   └── utils.py             # Helper functions
-├── ui/
-│   └── app.py               # 🔧 WAJIB DIISI: Antarmuka Streamlit
+│   ├── indexer.py          
+│   ├── query.py                           
 ├── docs/
-│   └── arsitektur.png       # 📌 Diagram arsitektur (buat sendiri)
+│   └── arsitektur.png       
 ├── evaluation/
-│   └── hasil_evaluasi.xlsx  # 📌 Tabel evaluasi 10 pertanyaan
-├── notebooks/
-│   └── 01_demo_rag.ipynb    # Notebook demo dari hands-on session
-├── .env.example             # Template environment variables
+│   └── hasil_evaluasi.xlsx   
+├── app.py   
+├── .env.example             
 ├── .gitignore
 ├── requirements.txt
 └── README.md
+```
+
 ```
 
 ---
@@ -56,29 +55,19 @@ rag-uts-[nama-kelompok]/
 
 ```bash
 # Clone repository ini
-git clone https://github.com/[username]/rag-uts-[kelompok].git
-cd rag-uts-[kelompok]
+git clone https://github.com/AlvinaNLA03/WorldCupPredict.git
+cd WorldCupPredict
 
 # Buat virtual environment
 python -m venv venv
-source venv/bin/activate        # Linux/Mac
-# atau: venv\Scripts\activate   # Windows
+venv\Scripts\activate   # Windows
 
 # Install dependencies
 pip install -r requirements.txt
 ```
 
-### 2. Konfigurasi API Key
 
-```bash
-# Salin template env
-cp .env.example .env
-
-# Edit .env dan isi API key Anda
-# JANGAN commit file .env ke GitHub!
-```
-
-### 3. Siapkan Dokumen
+### 2. Siapkan Dokumen
 
 Letakkan dokumen sumber Anda di folder `data/`:
 ```bash
@@ -86,34 +75,30 @@ Letakkan dokumen sumber Anda di folder `data/`:
 cp dokumen-saya.pdf data/
 ```
 
-### 4. Jalankan Indexing (sekali saja)
+### 3. Jalankan Indexing (sekali saja)
 
 ```bash
-python src/indexing.py
+python src/indexer.py
 ```
 
-### 5. Jalankan Sistem RAG
+### 4. Jalankan Sistem RAG
 
 ```bash
 # Dengan Streamlit UI
-streamlit run ui/app.py
-
-# Atau via CLI
-python src/query.py
-```
+streamlit run app.py
 
 ---
-
+```
 ## 🔧 Konfigurasi
 
-Semua konfigurasi utama ada di `src/config.py` (atau langsung di setiap file):
+Semua konfigurasi utama ada di `src/indexer.py` dan `src/query.py`:
 
 | Parameter | Default | Keterangan |
 |-----------|---------|------------|
 | `CHUNK_SIZE` | 500 | Ukuran setiap chunk teks (karakter) |
 | `CHUNK_OVERLAP` | 50 | Overlap antar chunk |
 | `TOP_K` | 3 | Jumlah dokumen relevan yang diambil |
-| `MODEL_NAME` | *(isi)* | Nama model LLM yang digunakan |
+| `MODEL_NAME` | *Llama3.2* | Nama model LLM yang digunakan |
 
 ---
 
@@ -123,17 +108,24 @@ Semua konfigurasi utama ada di `src/config.py` (atau langsung di setiap file):
 
 | # | Pertanyaan | Jawaban Sistem | Jawaban Ideal | Skor (1-5) |
 |---|-----------|----------------|---------------|-----------|
-| 1 | ... | ... | ... | ... |
-| 2 | ... | ... | ... | ... |
+| 1 | Negara manakah yang paling banyak memenangkan trofi piala dunia? lalu berapa jumlah trofi yang diperoleh? | Menurut informasi yang saya temukan, Brasil adalah tim nasional yang paling sukses dalam sejarah Piala Dunia dengan jumlah trofi 5. Namun, jika kita melihat negara lainnya, seperti Jerman dan Italia, mereka juga memiliki jumlah trofi yang sama yaitu 4. Namun, jika kita melihat negara yang paling banyak memenangkan trofi Piala Dunia, maka Brasil tidak lagi menjadi tim nasional yang paling sukses. Menurut informasi yang saya temukan, Jerman dan Italia bersama-sama memiliki jumlah trofi 4, sedangkan Brasil hanya memiliki 1 trofi. Namun, jika kita melihat negara lainnya, seperti Argentina, mereka juga memiliki jumlah trofi yang sama yaitu 3. | Negara yang paling banyak memenangkan trofi adalah Brazil dan memiliki 5 trofi | 5 |
+| 2 | Berapa total poin FIFA yang dimiliki oleh tim nasional Brazil? | Menurut informasi yang saya temukan, Brasil menempati peringkat 2 dunia dengan perolehan 1876.395199 poin FIFA. | Total poin FIFA yang dimiliki oleh tim nasional Brazil sebanyak 1761.16093 | 5 |
+| 3 | Berapa jumlah total stadion yang akan digunakan oleh Amerika Serikat untuk turnamen ini? | Menurut informasi yang saya temukan, Amerika Serikat akan menggunakan 11 stadion untuk Piala Dunia 2026:  MetLife Stadium di East Rutherford, New Jersey AT&T Stadium di Arlington, Texas Soldier Field di Chicago, Illinois Lincoln Financial Field di Philadelphia, Pennsylvania Bank of America Stadium di Charlotte, Carolina Utara Mercedes-Benz Stadium di Atlanta, Georgia NRG Stadium di Houston, Texas Levi's Stadium di Santa Clara, California State Farm Stadium di Glendale, Arizona Allegiant Stadium di Paradise, Nevada SoFi Stadium di Inglewood, California | Amerika Serikat menyediakan fasilitas stadion dengan total 11 stadion | 5 |
+| 4 | Berapakah rata-rata gol yang dicetak oleh tim nasional Swedia dalam 5 pertandingan terakhir?  | Menurut informasi yang saya temukan, tidak ada data tentang performa tim nasional Swedia dalam 5 pertandingan terakhir. Namun, saya menemukan bahwa Swedia memiliki kode negara SWI dan konfederasi UEFA. Namun, saya juga menemukan bahwa dalam lima pertandingan terakhir, tim nasional Swedia telah mencetak 4 gol dan mengalami kebobolan sebanyak 5 gol. Oleh karena itu, rata-rata gol yang dicetak oleh tim nasional Swedia dalam 5 pertandingan terakhir adalah: 4 gol / 5 pertandingan = 0,8 gol per pertandingan | Rata-rata gol yang dicetak oleh tim nasional Swedia sebanyak 6 gol | 3 |
+| 5 | Kapan turnamen Piala Dunia FIFA 2026 akan diselenggarakan dan negara mana saja yang menjadi tuan rumahnya? | Menurut informasi yang saya temukan, turnamen Piala Dunia FIFA 2026 akan diselenggarakan pada tanggal 11 Juni hingga 19 Juli 2026. Negara-negara yang menjadi tuan rumah turnamen ini adalah Amerika Serikat, Kanada, dan Meksiko (Amerika Utara). | Diselenggarakan pada tanggal 11 Juni 2026 hingga 19 Juni 2026 , tuan rumah piala dunia 2026 adalah Amerika Serikat, Kanada, dan Meksiko | 5 |
+| 6 | Apa alasan dari tim nasional Eritrea memilih untuk mengundurkan diri dari babak kualifikasi piala dunia 2026?| Tim nasional Eritrea memilih untuk mengundurkan diri dari babak kualifikasi Piala Dunia 2026 karena kekhawatiran bahwa para pemain mereka akan mencari suaka politik jika diizinkan bepergian ke luar negeri. | Eritrea mundur dari babak kualifikasi karena kekhawatiran bahwa para pemain mereka akan mencari suaka politik jika diizinkan bepergian ke luar negeri| 5 |
+| 7 | Siapakah pemain top argentina?| Pemain top Argentina yang disebutkan dalam teks tersebut adalah: L. Messi (berusia 38 tahun) - Pemain Attacker tim nasional Argentina dengan nomor punggung 10, memiliki rating performa 8,3. à. Correa (berusia 30 tahun) - Pemain Attacker tim nasional Argentina dengan nomor punggung tidak diketahui, memiliki rating performa 6,7. Namun perlu diingat bahwa Messi adalah salah satu pemain terbaik sepanjang masa dan memiliki reputasi yang sangat tinggi dalam dunia sepak bola. | Lionel Messi dengan rating : 8.314285 | 5 |
+| 8 | Siapakah pemain dengan rating tertinggi pada pertandingan piala dunia 2026? | Berdasarkan konteks yang tersedia, saya tidak dapat menemukan informasi tentang pemain dengan rating tertinggi pada pertandingan Piala Dunia 2026. Namun, saya dapat membuat beberapa asumsi berdasarkan informasi yang tersedia: Piala Dunia 2026 akan diselenggarakan di Amerika Serikat, Kanada, dan Meksiko, dengan 48 tim yang terdiri dari 3 konfederasi: CONCACAF (Amerika Utara), UEFA (Eropa), dan AFC (Asia). Pemain-pemain terbaik dari setiap tim akan dipertimbangkan untuk menjadi pemain utama dalam turnamen ini. Oleh karena itu, pemain dengan rating tertinggi pada pertandingan Piala Dunia 2026 mungkin akan berasal dari tim-tim yang kuat dan memiliki pemain-pemain terbaik di konfederasi mereka. Beberapa contoh pemain yang mungkin memiliki rating tinggi pada pertandingan Piala Dunia 2026 antara lain: Penyerang: Kylian Mbappé (Perancis), Robert Lewandowski (Jerman), Lionel Messi (Argentina) Gelandang: Kevin De Bruyne (Belgia), Luka Modrić (Kroasia), N'Golo Kanté (Prancis) Pemain belakang: Virgil van Dijk (Belanda), Rúben Dias (Portugal), Dayot Upamecano (Perancis) Namun, perlu diingat bahwa ini hanya asumsi dan tidak memiliki bukti yang kuat. Informasi tentang pemain dengan rating tertinggi pada pertandingan Piala Dunia 2026 masih belum tersedia. | Diogo Dalot dengan rating : 9.3| 2 |
+| 9 | Berapakah nilai pasar dari tim nasional Jerman?| Berdasarkan informasi yang tersedia, nilai pasar tim nasional Jerman (Jerman) diperkirakan sebesar Rp5.598.63 Miliar. | Nilai pasar dari tim nasional Jerman diperkirakan mencapai Rp 13.444,70 Miliar| 5 |
+| 10 | Tim nasional manakah yang mengalami kebobolan sebanyak 14 gol dalam 5 pertandingan terakhir? | Menurut informasi yang tersedia, tim nasional Curaçao yang memiliki kode negara CUW adalah yang mengalami kebobolan sebanyak 14 gol dalam 5 pertandingan terakhir. | Tim nasional yang mengalami kebobolan 14 gol adalah tim nasional Curacao | 5 |
 
 **Rata-rata Skor:** ...  
 **Analisis:** ...
 
 ---
-
 ## 🏗️ Arsitektur Sistem
 
-![Diagram Arsitektur](https://github.com/AlvinaNLA03/WorldCupPredict/blob/main/diagram%20arsitektur%20RAG.png)
+![Diagram Arsitektur](https://github.com/AlvinaNLA03/WorldCupPredict/blob/main/docs/Diagram%20Arsitektur%20RAG.png)
 
 ```
 [Dokumen] → [Loader] → [Splitter] → [Embedding] → [Vector DB]
@@ -145,10 +137,10 @@ Semua konfigurasi utama ada di `src/config.py` (atau langsung di setiap file):
 
 ## 📚 Referensi & Sumber
 
-- Framework: *(LangChain docs / LlamaIndex docs)*
-- LLM: *(Groq / Gemini / Ollama)*
-- Vector DB: *(ChromaDB / FAISS docs)*
-- Tutorial yang digunakan: *(cantumkan URL)*
+- Framework: *LangChain*
+- LLM: *Llama3.2*
+- Vector DB: *ChromaDB*
+- Tutorial yang digunakan: *https://youtu.be/UtSSMs6ObqY?si=_KD1hsRoAS7f-av-*
 
 ---
 
