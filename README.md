@@ -108,12 +108,7 @@ Semua konfigurasi utama ada di `src/indexer.py` dan `src/query.py`:
 
 | # | Pertanyaan | Jawaban Sistem | Jawaban Ideal | Skor (1-5) |
 |---|-----------|----------------|---------------|-----------|
-| 1 | Negara manakah yang paling banyak memenangkan trofi piala dunia? lalu berapa jumlah trofi yang diperoleh? | Menurut informasi yang saya temukan, Brasil adalah tim nasional yang paling sukses dalam sejarah Piala Dunia dengan jumlah trofi 5. Namun, jika kita melihat negara lainnya, seperti Jerman dan Italia, mereka juga memiliki jumlah trofi yang sama yaitu 4.
-
-Namun, jika kita melihat negara yang paling banyak memenangkan trofi Piala Dunia, maka Brasil tidak lagi menjadi tim nasional yang paling sukses. Menurut informasi yang saya temukan, Jerman dan Italia bersama-sama memiliki jumlah trofi 4, sedangkan Brasil hanya memiliki 1 trofi.
-
-Namun, jika kita melihat negara lainnya, seperti Argentina, mereka juga memiliki jumlah trofi yang sama yaitu 3.
- | Negara yang paling banyak memenangkan trofi adalah Brazil dan memiliki 5 trofi | 5 |
+| 1 | Negara manakah yang paling banyak memenangkan trofi piala dunia? lalu berapa jumlah trofi yang diperoleh? | Menurut informasi yang saya temukan, Brasil adalah tim nasional yang paling sukses dalam sejarah Piala Dunia dengan jumlah trofi 5. Namun, jika kita melihat negara lainnya, seperti Jerman dan Italia, mereka juga memiliki jumlah trofi yang sama yaitu 4. Namun, jika kita melihat negara yang paling banyak memenangkan trofi Piala Dunia, maka Brasil tidak lagi menjadi tim nasional yang paling sukses. Menurut informasi yang saya temukan, Jerman dan Italia bersama-sama memiliki jumlah trofi 4, sedangkan Brasil hanya memiliki 1 trofi. Namun, jika kita melihat negara lainnya, seperti Argentina, mereka juga memiliki jumlah trofi yang sama yaitu 3. | Negara yang paling banyak memenangkan trofi adalah Brazil dan memiliki 5 trofi | 5 |
 | 2 | Berapa total poin FIFA yang dimiliki oleh tim nasional Brazil? | Menurut informasi yang saya temukan, Brasil menempati peringkat 2 dunia dengan perolehan 1876.395199 poin FIFA. | Total poin FIFA yang dimiliki oleh tim nasional Brazil sebanyak 1761.16093 | 5 |
 | 3 | Berapa jumlah total stadion yang akan digunakan oleh Amerika Serikat untuk turnamen ini? | Menurut informasi yang saya temukan, Amerika Serikat akan menggunakan 11 stadion untuk Piala Dunia 2026:
 
