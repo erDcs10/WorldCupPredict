@@ -119,7 +119,7 @@ Semua konfigurasi utama ada di `src/indexer.py` dan `src/query.py`:
 | 9 | Berapakah nilai pasar dari tim nasional Jerman?| Berdasarkan informasi yang tersedia, nilai pasar tim nasional Jerman (Jerman) diperkirakan sebesar Rp5.598.63 Miliar. | Nilai pasar dari tim nasional Jerman diperkirakan mencapai Rp 13.444,70 Miliar| 5 |
 | 10 | Tim nasional manakah yang mengalami kebobolan sebanyak 14 gol dalam 5 pertandingan terakhir? | Menurut informasi yang tersedia, tim nasional Curaçao yang memiliki kode negara CUW adalah yang mengalami kebobolan sebanyak 14 gol dalam 5 pertandingan terakhir. | Tim nasional yang mengalami kebobolan 14 gol adalah tim nasional Curacao | 5 |
 
-**Rata-rata Skor:** ...  
+**Rata-rata Skor:** 4.5  
 **Analisis:** ...
 
 ---
