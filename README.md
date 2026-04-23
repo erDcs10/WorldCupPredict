@@ -108,11 +108,11 @@ Semua konfigurasi utama ada di `src/indexer.py` dan `src/query.py`:
 
 | # | Pertanyaan | Jawaban Sistem | Jawaban Ideal | Skor (1-5) |
 |---|-----------|----------------|---------------|-----------|
-| 1 | ... | ... | ... | ... |
-| 2 | ... | ... | ... | ... |
-| 3 | ... | ... | ... | ... |
-| 4 | ... | ... | ... | ... |
-| 5 | ... | ... | ... | ... |
+| 1 | Negara manakah yang paling banyak memenangkan trofi piala dunia? lalu berapa jumlah trofi yang diperoleh? | ... | Negara yang paling banyak memenangkan trofi adalah Brazil dan memiliki 5 trofi | ... |
+| 2 | Berapa total poin FIFA yang dimiliki oleh tim nasional Brazil? | ... | Total poin FIFA yang dimiliki oleh tim nasional Brazil sebanyak 1761.16093 | ... |
+| 3 | Berapa jumlah total stadion yang akan digunakan oleh Amerika Serikat untuk turnamen ini? | ... | Amerika Serikat menyediakan fasilitas stadion dengan total 11 stadion | ... |
+| 4 | Berapakah rata-rata gol yang dicetak oleh tim nasional Swedia dalam 5 pertandingan terakhir?  | ... | Rata-rata gol yang dicetak oleh tim nasional Swedia sebanyak 6 gol | ... |
+| 5 | Kapan turnamen Piala Dunia FIFA 2026 akan diselenggarakan dan negara mana saja yang menjadi tuan rumahnya? | ... | Diselenggarakan pada tanggal 11 Juni 2026 hingga 19 Juni 2026 , tuan rumah piala dunia 2026 adalah Amerika Serikat, Kanada, dan Meksiko | ... |
 | 6 | Apa alasan dari tim nasional Eritrea memilih untuk mengundurkan diri dari babak kualifikasi piala dunia 2026?| ... | Eritrea mundur dari babak kualifikasi karena kekhawatiran bahwa para pemain mereka akan mencari suaka politik jika diizinkan bepergian ke luar negeri| ... |
 | 7 | Siapakah pemain top argentina?| ... | Lionel Messi dengan rating : 8.314285 | ... |
 | 8 | Siapakah pemain dengan rating tertinggi pada pertandingan piala dunia 2026? | ... | Diogo Dalot dengan rating : 9.3| ... |
