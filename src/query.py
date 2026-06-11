@@ -75,8 +75,17 @@ class RAGQueryEngine:
         )
 
         # QA Prompt
+        qa_system_prompt = (
+            "You are a strict World Cup 2026 Analyst. "
+            "CRITICAL RULE: Look at the CONTEXT block below with extreme care. "
+            "If there is even a slight mention of the topic in the CONTEXT, you MUST use it. "
+            "Only if the CONTEXT is absolutely blank or completely unrelated to the topic, "
+            "you may use Rule 3 (Improvisation). "
+            "Prioritize data accuracy over being helpful. If numbers are in CONTEXT, use them exactly."
+        )
+
         qa_prompt = ChatPromptTemplate.from_messages([
-            ("system", "You are a World Cup Analyst. Use the retrieved context to answer."),
+            ("system", qa_system_prompt),
             ("system", "CONTEXT: {context}"),
             MessagesPlaceholder("chat_history"), 
             ("human", "{input}"),

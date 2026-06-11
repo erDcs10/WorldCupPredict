@@ -2,3 +2,4 @@
 __pycache__/
 *.pyc
 src/__pycache__/query.cpython-314.pyc
+README.md

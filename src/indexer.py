@@ -93,7 +93,7 @@ print(f"\n✅ Successfully loaded {len(all_docs)} total document pages/rows.")
 # 3. SPLIT AND EMBED
 # ==========================================
 print("Splitting text into chunks...")
-text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
+text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
 splits = text_splitter.split_documents(all_docs)
 
 # Tambahkan metadata chunk_id untuk setiap split agar kita bisa melacaknya nanti

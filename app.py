@@ -24,10 +24,15 @@ engine = load_engine()
 # ==========================================
 with st.sidebar:
     st.image("docs/WCP_Logo-01.svg", use_container_width=True)
+
     st.divider()
+
     st.header("⚙️ Pengaturan Pencarian")
     st.markdown("Atur seberapa pintar AI mencari data di database.")
+
+    st.divider()
     
+
     # Slider untuk mengatur bobot Keyword (BM25)
     # Format: st.slider(label, min_value, max_value, default_value, step)
     keyword_val = st.slider(
@@ -44,6 +49,14 @@ with st.sidebar:
     # Tampilkan persentase agar user/tim mudah membacanya
     st.info(f"🔍 **Komposisi Saat Ini:**\n- Keyword: {int(keyword_val*100)}%\n- Makna Kalimat: {int(semantic_val*100)}%")
 
+    st.markdown("""
+    **Kelompok:** *WCP*  
+    **Domain:** *http://localhost:8501*  
+    **LLM:** *Llama3.2*  
+    **Vector DB:** ChromaDB  
+    **Embedding:** nomic-embed-text
+    """)
+    
 # Update bobot di dalam engine setiap kali slider digeser
 engine.update_retriever_weights(keyword_val)
 
